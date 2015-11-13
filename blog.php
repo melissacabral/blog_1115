@@ -10,8 +10,7 @@ FROM posts, users, categories
 WHERE posts.is_public = 1
 AND posts.user_id = users.user_id
 AND posts.category_id = categories.category_id
-ORDER BY posts.date DESC
-LIMIT 2';
+ORDER BY posts.date DESC';
 //run it
 $result = $db->query($q);
 //check it
@@ -25,7 +24,7 @@ if( $result->num_rows >= 1 ){
 					<?php echo $row['title']; ?>
 				</a>
 			</h2>
-			<p><?php echo shorten( strip_tags( $row['body'] ), 400 ); ?></p>
+			<p><?php echo $row['body']; ?></p>
 			<footer>
 				<?php count_comments( $row['post_id'] ); ?>
 				Posted on <?php echo nice_date($row['date']); ?>
@@ -43,7 +42,7 @@ if( $result->num_rows >= 1 ){
 	echo 'No posts to show';
 }
 ?>
-	<section class="keep-reading"><a href="blog.php">Read all Blog Posts&hellip;</a></section>
+
 </main>
 
 <?php include('sidebar.php'); ?>

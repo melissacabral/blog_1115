@@ -11,7 +11,8 @@ function count_comments( $post ){
 	global $db;
 	$query = "SELECT COUNT(*) AS total
 				FROM comments
-				WHERE post_id = $post";
+				WHERE post_id = $post
+				AND is_approved = 1";
 	//run it
 	$result = $db->query($query);
 	//check it
@@ -23,6 +24,21 @@ function count_comments( $post ){
 		//free it
 		$result->free();
 	}	
+}
+
+//shorten a long string, but preserve words
+function shorten($str, $length, $minword = 3){
+    $sub = '';
+    $len = 0;   
+    foreach (explode(' ', $str) as $word){
+        $part = (($sub != '') ? ' ' : '') . $word;
+        $sub .= $part;
+        $len += strlen($part);       
+        if (strlen($word) > $minword && strlen($sub) >= $length){
+            break;
+        }
+    }   
+    return $sub . (($len < strlen($str)) ? '<span class="ellipses">&hellip;</span>' : '');
 }
 
 //no close PHP
