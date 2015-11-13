@@ -1,9 +1,8 @@
-<?php require('config.php'); 
-//clean up ugly timestamps
-function nice_date( $uglydate ){
-	$date = new DateTime( $uglydate );
-	return $date->format('l, F j, Y');
-}
+<?php 
+require('config.php'); 
+
+//prevent functions from accidentally being loaded twice
+include_once('functions.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,10 +17,13 @@ function nice_date( $uglydate ){
 </header>
 <main role="main">
 <?php //get all the published blog posts
-$q = 'SELECT title, body, date 
-		FROM posts
-		WHERE is_public = 1
-		ORDER BY date DESC
+$q = 'SELECT posts.title, posts.body, posts.date, users.username, 
+			categories.name, posts.post_id
+		FROM posts, users, categories
+		WHERE posts.is_public = 1
+		AND posts.user_id = users.user_id
+		AND posts.category_id = categories.category_id
+		ORDER BY posts.date DESC
 		LIMIT 2';
 //run it
 $result = $db->query($q);
@@ -33,7 +35,13 @@ if( $result->num_rows >= 1 ){
 	<article>
 		<h2><?php echo $row['title']; ?></h2>
 		<p><?php echo $row['body']; ?></p>
-		<footer>Posted on <?php echo nice_date($row['date']); ?></footer>
+		<footer>
+			<?php count_comments( $row['post_id'] ); ?>
+			Posted on <?php echo nice_date($row['date']); ?>
+			By <b><?php echo $row['username'] ?></b>
+			In the category <b><?php echo $row['name'] ?></b>
+			
+		</footer>
 	</article>
 <?php 
 	} //end while loop
@@ -49,7 +57,7 @@ if( $result->num_rows >= 1 ){
 <aside role="complementary" class="sticky">
 	<section>
 		<h2>Latest Posts:</h2>
-		<?php $query = 'SELECT title
+		<?php $query = 'SELECT title, post_id
 						FROM posts
 						WHERE is_public = 1
 						ORDER BY date DESC
@@ -60,7 +68,10 @@ if( $result->num_rows >= 1 ){
 		<ul>
 			<?php while( $row = $result->fetch_assoc() ){ ?>
 
-			<li><?php echo $row['title']; ?></li>
+			<li>
+				<?php echo $row['title']; ?> 
+				<?php count_comments($row['post_id']) ?>
+			</li>
 
 			<?php }//end while
 

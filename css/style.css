@@ -81,6 +81,29 @@ article footer{
 	padding-top:1em;
 	font-size: 1rem;
 }
+.comments-number{
+	background-color:#8EA3A6;
+	padding:.08em .4em;
+	display: inline-block;
+	color:white;
+	position: relative;
+	font-size:.8em;
+	font-weight: bold;
+}
+.comments-number:after{
+	display: block;
+	position: absolute;
+	content:'';
+	width:0;
+	height:0;
+	border-top:solid .25em #8EA3A6;
+	border-left:solid .25em #8EA3A6;
+	border-right:solid .25em transparent;
+	border-bottom:solid .25em transparent;
+
+	
+}
+
 
 @media only screen and (min-width: 700px){
 	main[role=main]{
