@@ -31,15 +31,13 @@ if( $_POST['did_comment'] ){
 			//show user feedback
 			$feedback = 'Thank you for your comment.';
 			//redirect so that refreshing the page doesn't double-post
-	header('Location:' . $_SERVER['REQUEST_URI'] );
+			header('Location:' . $_SERVER['REQUEST_URI'] );
 	
 		}else{
 			$feedback = 'Sorry, your comment could not be added at this time.';
 		} //end of check it
 		
-	} //end if valid
-
-	
+	} //end if valid	
 	
 } //end parser
 
