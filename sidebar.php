@@ -1,4 +1,12 @@
 <aside role="complementary" class="sticky">
+	<section class="search-box">
+		<form action="search.php" method="get">
+			<label for="search">Search:</label>
+			<input type="search" name="phrase" id="search" value="<?php echo $_GET['phrase'] ?>">
+			<input type="submit" value="Search">
+		</form>
+	</section>
+
 	<section>
 		<h2>Latest Posts:</h2>
 		<?php $query = 'SELECT title, post_id

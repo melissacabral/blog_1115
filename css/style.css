@@ -80,6 +80,44 @@ article{
 	padding:1rem 1rem 4rem;
 	
 }
+.search-heading{
+	background-color: rgba(255,255,255,.7);
+	padding:1rem 1rem 4rem;
+}
+.pagination{
+	background-color: transparent;
+	padding: 0;
+}
+.pagination a{
+	background-color: rgba(0,0,0,.5);
+	padding:1rem ;
+	text-align: center;
+	color:white;
+	display: block;
+	max-width: 400px;
+}
+/*numbered pagination demo*/
+.numbered-pagination{
+	background-color: rgba(255,255,255,.6);
+	margin: 0;
+	padding: 1em;
+}
+.numbered-pagination li{
+	display: inline-block;
+}
+.numbered-pagination a{
+	display: block;	
+	padding:.5em;
+	border-radius: 100px;
+	width:1em;
+	height:1em;
+	box-sizing:content-box;
+	text-align: center;
+}
+.current-page a{
+	background-color:tomato;
+}
+
 /*drop cap*/
 article>p:nth-of-type(1):first-letter{ 
 	float: left; 
@@ -172,6 +210,19 @@ input[type=submit]{
 	border:none;
 	min-width: 200px;
 }
+.search-box label{
+	display: none;
+}
+.search-box input[type=search],
+.search-box input[type=submit]{
+	font-size:1rem;
+	padding:.5rem;
+	border:none;
+	outline: none;
+	width:auto;
+	min-width: inherit;
+}
+
 .feedback{
 	background-color: #F5E3A5;
 	padding:.5em;
