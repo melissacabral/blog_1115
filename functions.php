@@ -10,9 +10,9 @@ function nice_date( $uglydate ){
 function count_comments( $post ){
 	global $db;
 	$query = "SELECT COUNT(*) AS total
-				FROM comments
-				WHERE post_id = $post
-				AND is_approved = 1";
+	FROM comments
+	WHERE post_id = $post
+	AND is_approved = 1";
 	//run it
 	$result = $db->query($query);
 	//check it
@@ -28,17 +28,26 @@ function count_comments( $post ){
 
 //shorten a long string, but preserve words
 function shorten($str, $length, $minword = 3){
-    $sub = '';
-    $len = 0;   
-    foreach (explode(' ', $str) as $word){
-        $part = (($sub != '') ? ' ' : '') . $word;
-        $sub .= $part;
-        $len += strlen($part);       
-        if (strlen($word) > $minword && strlen($sub) >= $length){
-            break;
-        }
-    }   
-    return $sub . (($len < strlen($str)) ? '<span class="ellipses">&hellip;</span>' : '');
+	$sub = '';
+	$len = 0;   
+	foreach (explode(' ', $str) as $word){
+		$part = (($sub != '') ? ' ' : '') . $word;
+		$sub .= $part;
+		$len += strlen($part);       
+		if (strlen($word) > $minword && strlen($sub) >= $length){
+			break;
+		}
+	}   
+	return $sub . (($len < strlen($str)) ? '<span class="ellipses">&hellip;</span>' : '');
 }
-
+function array_list($array){
+	if(is_array($array)){
+		$output = '<ul>';
+		foreach ($array as  $value) {
+			$output .= '<li>' . $value . '</li>'; 
+		}
+		$output .= '</ul>';
+		echo $output;
+	}
+}
 //no close PHP

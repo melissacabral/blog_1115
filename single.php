@@ -30,7 +30,7 @@ if( $result->num_rows >= 1 ){
 			<h2><?php echo $row['title']; ?></h2>
 			<?php echo $row['body']; ?>
 			<footer>
-				
+
 				Posted on <?php echo nice_date($row['date']); ?>
 				By <b><?php echo $row['username'] ?></b>
 				In the category <b><?php echo $row['name'] ?></b>
@@ -63,7 +63,7 @@ if( $result->num_rows >= 1 ){
 					</li>
 					<?php } //end while ?>
 				</ul>
-				
+
 			</section>
 			<?php 
 		}//end of comment check ?>
@@ -76,6 +76,7 @@ if( $result->num_rows >= 1 ){
 			if( isset($feedback) ){
 				echo '<div class="feedback">';
 				echo $feedback;
+				array_list($errors);
 				echo '</div>';
 			} ?>
 			<form action="#leave-comment" method="post">

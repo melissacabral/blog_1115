@@ -12,7 +12,8 @@ if( $_POST['did_comment'] ){
 
 	//check for missing fields
 	if( $user_id == '' OR $body == '' ){
-		$errors['required'] = 'All fields are required.';
+		
+		$feedback = 'Please fill in the comment field';
 		$valid = false; 
 	}
 	
@@ -29,6 +30,8 @@ if( $_POST['did_comment'] ){
 		if( $db->affected_rows == 1 ){
 			//show user feedback
 			$feedback = 'Thank you for your comment.';
+			//redirect so that refreshing the page doesn't double-post
+	header('Location:' . $_SERVER['REQUEST_URI'] );
 	
 		}else{
 			$feedback = 'Sorry, your comment could not be added at this time.';
@@ -36,8 +39,7 @@ if( $_POST['did_comment'] ){
 		
 	} //end if valid
 
-	//redirect so that refreshing the page doesn't double-post
-	header('Location:' . $_SERVER['REQUEST_URI'] );
+	
 	
 } //end parser
 
