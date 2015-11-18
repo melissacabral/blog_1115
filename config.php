@@ -16,5 +16,8 @@ if( $db->connect_errno > 0 ){
 //error reporting
 error_reporting( E_ALL & ~E_NOTICE ); 
 
+//try to fix weird characters
+$db->set_charset("utf8");
+
 
 //no close PHP
