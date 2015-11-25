@@ -40,6 +40,7 @@ function shorten($str, $length, $minword = 3){
 	}   
 	return $sub . (($len < strlen($str)) ? '<span class="ellipses">&hellip;</span>' : '');
 }
+
 function array_list($array){
 	if(is_array($array)){
 		$output = '<ul>';
@@ -48,6 +49,29 @@ function array_list($array){
 		}
 		$output .= '</ul>';
 		echo $output;
+	}
+}
+
+//check to see if the user is already logged in
+function check_login_key(){
+	global $db;
+
+	$key = $_SESSION['key'];
+	$user_id = $_SESSION['user_id'];
+	//compare the local key to the DB key
+	$query = "SELECT is_admin FROM users
+				WHERE login_key = '$key'
+				AND user_id = $user_id
+				LIMIT 1";
+	$result = $db->query($query);
+
+	if($result->num_rows == 1){
+		$row = $result->fetch_assoc();
+		define( IS_ADMIN, $row['is_admin'] );
+
+		return true;
+	}else{
+		return false;
 	}
 }
 //no close PHP
