@@ -1,8 +1,10 @@
 <?php 
-require('config.php'); 
-
-//prevent functions from accidentally being loaded twice
+session_start();
+require('config.php');
 include_once('functions.php');
+
+//is the viewer logged in? 
+check_login_key();
 ?>
 <!DOCTYPE html>
 <html>

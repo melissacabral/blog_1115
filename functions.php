@@ -2,7 +2,7 @@
 //clean up ugly timestamps
 function nice_date( $uglydate ){
 	$date = new DateTime( $uglydate );
-	return $date->format('l, F j, Y');
+	return $date->format('F j, Y');
 }
 
 //count the comments on any post
@@ -71,7 +71,15 @@ function check_login_key(){
 
 		return true;
 	}else{
+		define( IS_ADMIN, '' );
 		return false;
 	}
+}
+
+// use this to clean user input strings and prepare them for the DB. 
+// accepts a string list of allowed tags, like '<p><em><strong><br>'
+function clean_input( $data, $allowed_tags = '' ){
+	global $db;
+	return mysqli_real_escape_string($db, strip_tags(trim($data), $allowed_tags));
 }
 //no close PHP

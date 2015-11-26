@@ -4,6 +4,7 @@ require('header.php');
 //link will look like /blog/single.php?post_id=X
 $post_id = $_GET['post_id'];
 
+
 //load the comment processor
 include('parse-comment.php');
 ?>
@@ -11,13 +12,13 @@ include('parse-comment.php');
 <main role="main">
 <?php //get the post the user is viewing
 $q = "SELECT posts.title, posts.body, posts.date, users.username, 
-categories.name, posts.post_id, posts.allow_comments
-FROM posts, users, categories
-WHERE posts.is_public = 1
-AND posts.user_id = users.user_id
-AND posts.category_id = categories.category_id
-AND posts.post_id = $post_id
-LIMIT 1";
+	categories.name, posts.post_id, posts.allow_comments
+	FROM posts, users, categories
+	WHERE posts.is_public = 1
+	AND posts.user_id = users.user_id
+	AND posts.category_id = categories.category_id
+	AND posts.post_id = $post_id
+	LIMIT 1";
 //run it
 $result = $db->query($q);
 //check it
@@ -39,11 +40,11 @@ if( $result->num_rows >= 1 ){
 
 	<?php //get all approved comments written about this post
 	$query = "SELECT users.username, comments.body, comments.date
-	FROM users, comments
-	WHERE users.user_id = comments.user_id
-	AND comments.is_approved = 1
-	AND comments.post_id = $post_id
-	LIMIT 10";
+			FROM users, comments
+			WHERE users.user_id = comments.user_id
+			AND comments.is_approved = 1
+			AND comments.post_id = $post_id
+			LIMIT 10";
 	//run it
 	$result = $db->query($query);
 	//check it
@@ -68,8 +69,11 @@ if( $result->num_rows >= 1 ){
 			<?php 
 		}//end of comment check ?>
 
-		<?php if( $comments_allowed ){ ?>
+		
 		<section class="comment-form" id="leave-comment">
+		<?php 
+		if( $comments_allowed ){
+			if( IS_ADMIN != '' ){ ?>
 			<h3>Leave a Comment</h3>
 			<?php 
 	//display feedback
@@ -84,14 +88,21 @@ if( $result->num_rows >= 1 ){
 				<textarea name="body" id="body"></textarea>
 
 				<?php // TODO:  change this so it works with the actual logged in user ?>
-				<input type="hidden" name="user_id" value="1">
+				<input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">
 
 				<input type="hidden" name="did_comment" value="true">
 
 				<input type="submit" value="Comment">
 			</form>
-		</section>
-		<?php } //end if comments allowed ?>
+		<?php 
+				}else{
+					echo 'You must be logged in to comment on this post.';
+				}
+			}else{
+			echo 'Comments are closed on this post.';
+			} //end if comments allowed ?>
+			</section>
+		
 
 
 		<?php 

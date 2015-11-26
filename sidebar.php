@@ -90,4 +90,14 @@
 	} ?>
 </section>
 
+<?php if(IS_ADMIN != ''){ ?>
+<section>
+	<h2>You are logged in</h2>
+	<ul>
+		<li><a href="login.php?logout=true">Log Out</a></li>
+		<li><a href="admin/">View Admin</a></li>
+	</ul>
+</section>
+<?php } ?>
+
 </aside>

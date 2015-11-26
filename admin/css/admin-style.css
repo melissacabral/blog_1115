@@ -219,6 +219,10 @@ form input[type=submit] {
   -ms-border-radius: .5em;
   border-radius: .5em;
 }
+textarea{
+  height:300px;
+  resize:vertical;
+}
 
 /* feedback */
 .feedback {
