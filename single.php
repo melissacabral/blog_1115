@@ -60,7 +60,7 @@ if( $result->num_rows >= 1 ){
 					<span class="comment-info">Comment from <strong><?php echo $row['username']; ?></strong> 
 						<br>
 						<strong><?php echo nice_date($row['date']) ?></strong></span>
-						<p class="comment-body"><?php echo $row['body']; ?></p>
+						<div class="comment-body"><?php echo $row['body']; ?></div>
 					</li>
 					<?php } //end while ?>
 				</ul>
