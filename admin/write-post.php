@@ -6,7 +6,7 @@ if( $_POST['did_post'] ){
 	//sanitize everything
 	$title = clean_input($_POST['title'] );
 	$body = clean_input($_POST['body'], '<p><a><b><br><i>' );
-	$category_id = filter_var( $_POST['category_id'], FILTER_SANITIZE_NUMBER_INT );;
+	$category_id = filter_var( $_POST['category_id'], FILTER_SANITIZE_NUMBER_INT );
 	//make sure boolean values are 1 or 0
 	if( $_POST['is_public'] == 1 ){
 		$is_public = 1;
