@@ -19,5 +19,10 @@ error_reporting( E_ALL & ~E_NOTICE );
 //try to fix weird characters
 $db->set_charset("utf8");
 
+//Handy constants for clarifying file paths and URLs
+define( ROOT_URL, 'http://localhost/melissa-php-1115/blog_1115' );
+
+define( ROOT_PATH, 'C:\xampp\htdocs\melissa-php-1115\blog_1115' );
+
 
 //no close PHP

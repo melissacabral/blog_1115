@@ -303,6 +303,10 @@ td {
   font-weight: 300;
   padding: 0 10px;
 }
+img{
+  max-width: 100%;
+  height: auto;
+}
 
 @media screen and (min-width: 600px) {
   html, body {
@@ -369,8 +373,12 @@ td {
   }
 
   .twothirds {
-    width: 66%;
+    width: 66.6%;
     float: left;
+  }
+  .onehalf{
+    width:50%;
+    float:left;
   }
 
   footer[role=contentinfo] {

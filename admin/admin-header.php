@@ -36,6 +36,6 @@ if( ! check_login_key() ){
       <li class="write"><a href="write-post.php">Write Post</a></li>
       <li class="edit"><a href="manage-posts.php">Edit Posts</a></li>
       <li class="comments"><a href="#">Comments</a></li>
-      <li class="users"><a href="#">Manage Users</a></li>
+      <li class="users"><a href="edit-profile.php">Edit Profile</a></li>
     </ul>
   </nav>

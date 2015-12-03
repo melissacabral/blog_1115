@@ -82,4 +82,28 @@ function clean_input( $data, $allowed_tags = '' ){
 	global $db;
 	return mysqli_real_escape_string($db, strip_tags(trim($data), $allowed_tags));
 }
+
+//show any user's userpic at any of the preset sizes
+//size names are thumb_img and medium_img
+function show_userpic($user_id, $size = 'thumb_img'){
+	global $db;
+	//get the usepic randomsha from the DB
+	$query = "SELECT userpic 
+			FROM users
+			WHERE user_id = $user_id
+			LIMIT 1";
+	$result = $db->query($query);
+	if( $result->num_rows >= 1 ){
+		$row = $result->fetch_assoc();
+		//check to see if the user has a userpic
+		if( $row['userpic'] == '' ){
+			//show a default head
+			echo '<img src="' . ROOT_URL . '/images/default.png" alt="default userpic" class="avatar default">';
+		}else{
+			//show the userpic
+			echo '<img src="' . ROOT_URL . '/uploads/' . $row['userpic'] . '_' . $size . 
+			'.jpg" alt="User Profile Pic" class="avatar">';
+		}
+	}
+}
 //no close PHP

@@ -1,4 +1,5 @@
 <aside role="complementary" class="sticky">
+
 	<section class="search-box">
 		<form action="search.php" method="get">
 			<label for="search">Search:</label>
